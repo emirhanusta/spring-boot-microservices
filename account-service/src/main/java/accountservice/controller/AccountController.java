@@ -5,6 +5,7 @@ import accountservice.dto.AccountDto;
 import accountservice.dto.AccountRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,17 +26,18 @@ public class AccountController {
     }
 
     @GetMapping("/getAll")
-    public ResponseEntity<List<AccountDto>> getAllAccounts(@RequestParam int page, @RequestParam int size) {
+    public ResponseEntity<List<AccountDto>> getAllAccounts(@RequestParam(defaultValue = "0") int page,
+                                                           @RequestParam(defaultValue = "5") int size) {
         return ResponseEntity.ok(accountService.getAllAccounts(page, size));
     }
 
     @PostMapping("/create")
-    public ResponseEntity<AccountDto> createAccount(@RequestBody AccountRequest request) {
+    public ResponseEntity<AccountDto> createAccount(@Validated @RequestBody AccountRequest request) {
         return ResponseEntity.ok(accountService.createAccount(request));
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<AccountDto> updateAccount(@PathVariable String id, @RequestBody AccountRequest request) {
+    public ResponseEntity<AccountDto> updateAccount(@PathVariable String id,@Validated @RequestBody AccountRequest request) {
         return ResponseEntity.ok(accountService.updateAccount(id, request));
     }
 
