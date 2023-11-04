@@ -4,3 +4,4 @@ spring:
       database: Account
       host: account-db
       port: 27017
+      uri: mongodb://account-db:27017/Account

@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/account-service/account-service.iml" filepath="$PROJECT_DIR$/account-service/account-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/spring-boot-microservices.iml" filepath="$PROJECT_DIR$/.idea/spring-boot-microservices.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ticket-service/ticket-service.iml" filepath="$PROJECT_DIR$/ticket-service/ticket-service.iml" />
     </modules>
   </component>
 </project>

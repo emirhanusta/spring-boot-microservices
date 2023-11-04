@@ -1,0 +1,7 @@
+spring:
+  data:
+    mongodb:
+      database: Ticket
+      host: ticket-db
+      port: 27017
+      uri: mongodb://ticket-db:27017/Ticket
