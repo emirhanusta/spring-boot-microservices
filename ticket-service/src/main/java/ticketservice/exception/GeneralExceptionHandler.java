@@ -11,5 +11,10 @@ public class GeneralExceptionHandler {
     public ResponseEntity<?> handle(TicketNotFoundException exception) {
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(AccountNotFoundException.class)
+    public ResponseEntity<?> handle(AccountNotFoundException exception) {
+        return new ResponseEntity<>(exception.getExceptionMessage(), HttpStatus.resolve(exception.getExceptionMessage().status()));
+    }
 }
 
