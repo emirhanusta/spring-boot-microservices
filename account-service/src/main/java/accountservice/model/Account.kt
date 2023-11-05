@@ -1,6 +1,7 @@
 package accountservice.model
 
 import com.mongodb.lang.NonNull
+import org.springframework.data.mongodb.core.index.Indexed
 import org.springframework.data.mongodb.core.mapping.Document
 import java.util.*
 
@@ -9,6 +10,7 @@ data class Account @JvmOverloads constructor(
 
     val id: String = UUID.randomUUID().toString(),
     @NonNull
+    @Indexed(unique = true)
     var username: String,
     @NonNull
     var name: String,

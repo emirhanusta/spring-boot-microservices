@@ -7,7 +7,7 @@ public record TicketRequest(
         String description,
         String notes,
         @Nonnull
-        String assignee
+        String assigneeId
 ) {
 
 }

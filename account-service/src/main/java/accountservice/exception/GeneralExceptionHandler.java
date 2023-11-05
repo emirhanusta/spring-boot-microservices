@@ -12,4 +12,8 @@ public class GeneralExceptionHandler {
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(AccountAlreadyExistsException.class)
+    public ResponseEntity<?> handle(AccountAlreadyExistsException exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.CONFLICT);
+    }
 }

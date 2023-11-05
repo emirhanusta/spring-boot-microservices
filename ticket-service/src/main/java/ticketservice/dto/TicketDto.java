@@ -6,14 +6,14 @@ public record TicketDto(
         String id,
         String description,
         String notes,
-        String assignee
+        String assigneeId
 ) {
     public static TicketDto convertToDto(Ticket ticket) {
         return new TicketDto(
                 ticket.getId(),
                 ticket.getDescription(),
                 ticket.getNotes(),
-                ticket.getAssignee()
+                ticket.getAssigneeId()
         );
     }
 }

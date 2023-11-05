@@ -1,10 +1,11 @@
 package accountservice.dto;
 
 import com.mongodb.lang.NonNull;
-import org.intellij.lang.annotations.RegExp;
+import org.springframework.data.mongodb.core.index.Indexed;
 
 public record AccountRequest(
         @NonNull
+        @Indexed(unique = true)
         String username,
         @NonNull
         String name,

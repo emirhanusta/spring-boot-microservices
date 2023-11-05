@@ -2,6 +2,7 @@ package accountservice.service;
 
 import accountservice.dto.AccountDto;
 import accountservice.dto.AccountRequest;
+import accountservice.exception.AccountAlreadyExistsException;
 import accountservice.exception.AccountNotFoundException;
 import accountservice.model.Account;
 import accountservice.repository.AccountRepository;
@@ -19,13 +20,16 @@ public class AccountService {
         this.accountRepository = accountRepository;
     }
 
-    public AccountDto createAccount(AccountRequest accountDto) {
+    public AccountDto createAccount(AccountRequest accountRequest) {
+        if (accountRepository.findByUsernameAndActiveTrue(accountRequest.username()).isPresent()) {
+            throw new AccountAlreadyExistsException("Account already exists with username: " + accountRequest.username());
+        }
         Account account = new Account(
-                accountDto.username(),
-                accountDto.name(),
-                accountDto.surname(),
-                accountDto.email(),
-                accountDto.password()
+                accountRequest.username(),
+                accountRequest.name(),
+                accountRequest.surname(),
+                accountRequest.email(),
+                accountRequest.password()
         );
         Account savedAccount = accountRepository.save(account);
         return AccountDto.convertToDto(savedAccount);
@@ -35,7 +39,6 @@ public class AccountService {
         Account account = findActiveAccountById(id);
         return AccountDto.convertToDto(account);
     }
-
     public List<AccountDto> getAllAccounts(int page, int size) {
         return accountRepository.findAllByActiveTrue(PageRequest.of(page, size))
                 .stream()
@@ -63,4 +66,5 @@ public class AccountService {
         return accountRepository.findByIdAndActiveTrue(id)
                 .orElseThrow(() -> new AccountNotFoundException("Account not found with id: " + id ));
     }
+
 }

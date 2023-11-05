@@ -1,7 +1,6 @@
 package ticketservice.model
 
 import com.mongodb.lang.NonNull
-import org.intellij.lang.annotations.Pattern
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.annotation.Id
 import org.springframework.data.annotation.LastModifiedDate
@@ -18,7 +17,7 @@ data class Ticket @JvmOverloads constructor(
         var description: String,
         var notes: String,
         @NonNull
-        var assignee: String,
+        var assigneeId: String,
         var active: Boolean? = true,
         @CreatedDate
         var createdDate: Date? = null,

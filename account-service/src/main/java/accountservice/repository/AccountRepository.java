@@ -12,4 +12,5 @@ public interface AccountRepository extends MongoRepository<Account, String> {
 
     List<Account> findAllByActiveTrue(PageRequest pageRequest);
 
+    Optional<Account> findByUsernameAndActiveTrue(String username);
 }

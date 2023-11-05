@@ -3,6 +3,7 @@ package accountservice.controller;
 import accountservice.service.AccountService;
 import accountservice.dto.AccountDto;
 import accountservice.dto.AccountRequest;
+import com.mongodb.lang.NonNull;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/v1/account")
+@RequestMapping("/api/v1/account")
 public class AccountController {
 
     private final AccountService accountService;
@@ -21,7 +22,7 @@ public class AccountController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<AccountDto> getAccountById(@PathVariable String id) {
+    public ResponseEntity<AccountDto> getAccountById(@PathVariable @NonNull String id) {
         return ResponseEntity.ok(accountService.getAccountById(id));
     }
 
