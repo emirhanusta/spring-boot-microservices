@@ -10,6 +10,6 @@ import ticketservice.dto.AccountDto;
 public interface AccountServiceClient {
 
     @GetMapping("/{id}")
-    ResponseEntity<AccountDto> getAccountById(@PathVariable String id) ;
+    ResponseEntity<AccountDto> getAccountById(@PathVariable(value = "id") String id) ;
 
 }
